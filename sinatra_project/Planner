@@ -1,0 +1,3 @@
+-User can Log in >> sees instruction, create/ delete list form, and their saved list
+-create/pick existing list database
+(User has_many list & list belong_to User)
