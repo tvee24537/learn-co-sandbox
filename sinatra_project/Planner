@@ -1,3 +1,13 @@
--User can Log in >> sees instruction, create/ delete list form, and their saved list
+-User can Login >> sees instruction, create/ delete list form, and their saved list
 -create/pick existing list database
-(User has_many list & list belong_to User)
+(User has_many list & list belongs_to User)
+-User can add/delete data in the list, list updates after clicking submit
+-User can back out of list currently viewing to main page of lists
+-User can Logout
+
+-Adjustment to fit requirements:
+  Ensure that users can edit and delete only their own resources
+  Validate user input so bad data cannot be persisted to the database
+  Validate uniqueness of user login attribute (username or email)
+  Use multiple models
+  
