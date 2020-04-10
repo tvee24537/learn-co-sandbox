@@ -58,3 +58,24 @@ class ItemsController < ApplicationController
       redirect_if_not_logged_in
     end
   end
+  
+  # does not let a user edit an item with blank content
+  patch '/items/:id' do
+    if !params[:description].empty? && !params[:amount].empty?
+      @item = Item.find(params[:id])
+      @item.update(description:params[:description], amount:params[:amount])
+      @list = current_user.lists.find_by(name:params[:list_name])
+      @item.list_id = @list.id
+      @item.save
+      flash[:message] = "Your Item Has Been Succesfully Updated."
+      redirect_to_home_page
+    else
+      flash[:message] = "Please Don't Leave Blank Content."
+      redirect to "/items/#{params[:id]}/edit"
+    end
+  end
+  
+  
+  
+  
+  
