@@ -43,4 +43,18 @@ class ItemsController < ApplicationController
     end
   end
   
-  
+# lets a user view item edit form if they are logged in
+  # does not let a user edit a item user did not create
+  get '/items/:id/edit' do
+    if logged_in?
+      @item = Item.find(params[:id])
+      @list = List.find(@item.list_id)
+      if @item.user_id == current_user.id
+        erb :'items/edit_item'
+      else
+        redirect_to_home_page
+      end
+    else
+      redirect_if_not_logged_in
+    end
+  end
