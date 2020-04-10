@@ -1,12 +1,29 @@
 class UsersController < ApplicationController
 
-  get '/users/home' do
-    # find the current user by finding the user with the id that is stored 
-    #   in session[:id]
-    # set that user equal to a variable, @user, so that the view found in 
-    #   app/views/users/home.erb can render that user
-    @user = User.find(session[:id])
-    erb :'/users/home'
+  # loads the signup page
+  # does not let a logged in user view the signup page
+  get '/signup' do
+    if !logged_in?
+      erb :'users/create_user', :layout => :'not_logged_in_layout'
+    else
+      redirect_to_home_page
+    end
   end
+
+  # does not let a user sign up without a username, email, password
+  # creates a general list on initialization
+  post '/signup' do
+    if params[:username].empty? || params[:password].empty?
+      flash[:message] = "Pleae don't leave blank content."
+      redirect to '/signup'
+    else
+      @user = User.create(username:params[:username], password:params[:password])
+      @list = List.create(name:"General", user_id:@user.id)
+      session[:user_id] = @user.id
+      flash[:message] = "It's time to add items"
+      redirect_to_home_page
+    end
+  end
+
 
 end
