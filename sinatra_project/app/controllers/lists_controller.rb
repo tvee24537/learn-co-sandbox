@@ -22,5 +22,12 @@ class ListsController < ApplicationController
     end
   end
 
-  # displays a single list
-  
+  # displays a single list based on id
+  get '/lists/:id' do
+    if logged_in?
+      @list = List.find(params[:id])
+      erb :'lists/show_list'
+    else
+      redirect_if_not_logged_in
+    end
+  end
