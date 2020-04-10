@@ -75,7 +75,19 @@ class ItemsController < ApplicationController
     end
   end
   
-  
-  
-  
-  
+# lets a user delete their own item if they are logged in
+  # does not let a user delete a item they did not create
+  delete '/items/:id/delete' do
+    if logged_in?
+      @item = Item.find(params[:id])
+      if @item.user_id == current_user.id
+        @item.delete
+        flash[:message] = "Your item has been deleted successfully."
+        redirect_to_home_page
+      end
+    else
+      redirect_if_not_logged_in
+    end
+  end
+
+end
