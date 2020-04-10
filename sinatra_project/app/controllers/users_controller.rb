@@ -25,5 +25,17 @@ class UsersController < ApplicationController
     end
   end
 
-
+  # loads the login page
+  # loads items page after login
+  # does not let user view login page if already logged in
+  get '/login' do
+    if logged_in?
+      redirect_to_home_page
+    else
+      erb :index, :layout => :'not_logged_in_layout'
+    end
+  end
+  
+  
+  
 end
