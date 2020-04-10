@@ -36,6 +36,16 @@ class UsersController < ApplicationController
     end
   end
   
-  
+  # loads items if username exists and password is authenticated
+  post '/login' do
+    @user = User.find_by(username:params[:username])
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect_to_home_page
+    else
+      flash[:message] = "We can't find you, Please try again"
+      redirect_if_not_logged_in
+    end
+  end
   
 end
