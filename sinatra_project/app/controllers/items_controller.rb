@@ -32,3 +32,15 @@ class ItemsController < ApplicationController
       redirect to "/items/#{@item.id}"
     end
   end
+  
+  # displays a single item
+  get '/items/:id' do
+    if logged_in?
+      @item = Item.find(params[:id])
+      erb :'items/show_item'
+    else
+      redirect_if_not_logged_in
+    end
+  end
+  
+  
