@@ -31,3 +31,33 @@ class ListsController < ApplicationController
       redirect_if_not_logged_in
     end
   end
+
+# lets a user view list edit form if they are logged in
+  # does not let a user edit a list not created by it self
+  get '/lists/:id/edit' do
+    if logged_in?
+      @list = List.find(params[:id])
+      if @list.user_id == current_user.id
+        erb :'lists/edit_list'
+      else
+        redirect_to_lists
+      end
+    else
+      redirect_if_not_logged_in
+    end
+  end
+
+  # does not let a user edit a list with blank content
+  patch '/lists/:id' do
+    if !params[:name].empty?
+      @list = List.find(params[:id])
+      @list.update(name:params[:name])
+      flash[:message] = "Your list has been updated successfully"
+      redirect_to_lists
+    else
+      flash[:message] = "Please don't leave blank content"
+      redirect to "/lists/#{params[:id]}/edit"
+    end
+  end
+
+ 
