@@ -60,4 +60,24 @@ class ListsController < ApplicationController
     end
   end
 
- 
+# lets a user delete their own list if they are logged in
+  # does not let a user delete a list that user did not create
+  delete '/lists/:id/delete' do
+    if logged_in?
+      if current_user.lists.size == 1
+        flash[:message] = "You need at least one list to delete."
+        redirect_to_categories
+      else
+        @list = List.find(params[:id])
+        if @list.user_id == current_user.id
+          @list.destroy
+          flash[:message] = "Your list has been deleted successfully."
+          redirect_to_lists
+        end
+      end
+    else
+      redirect_if_not_logged_in
+    end
+  end
+
+end 
