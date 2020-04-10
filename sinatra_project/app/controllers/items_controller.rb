@@ -18,3 +18,17 @@ class ItemsController < ApplicationController
       redirect_if_not_logged_in
     end
   end
+  
+  # does not let a user create a blank item
+  post '/items' do
+    if params[:description].empty? || params[:amount].empty? || params[:list_name].empty?
+      flash[:message] = "Please don't leave blank content."
+      redirect to "/items/new"
+    else
+      @user = current_user
+      @list = @user.lists.find_or_create_by(name:params[:list_name])
+      @list.user_id = @user.id
+      @item = Item.create(description:params[:description], amount:params[:amount], list_id:@list.id, user_id:@user.id)
+      redirect to "/items/#{@item.id}"
+    end
+  end
