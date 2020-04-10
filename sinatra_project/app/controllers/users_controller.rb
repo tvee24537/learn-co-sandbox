@@ -79,6 +79,16 @@ class UsersController < ApplicationController
     end
   end
 
+  # lets a user delete its own account if they are logged in
+  delete '/users/:id/delete' do
+    if logged_in?
+      current_user.delete
+      redirect to "/logout"
+    else
+      redirect_if_not_logged_in
+    end
+  end
+
   
   
 end
