@@ -70,7 +70,15 @@ class UsersController < ApplicationController
     end
   end
   
-  
+  # displays user info if logged in
+  get '/users/:id' do
+    if logged_in?
+      erb :'users/show'
+    else
+      redirect_if_not_logged_in
+    end
+  end
+
   
   
 end
