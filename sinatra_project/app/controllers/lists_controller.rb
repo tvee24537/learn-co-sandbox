@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
 
-  # lets user view expense lists if logged in
+  # lets user view item lists if logged in
   get '/lists' do
     if logged_in?
       @lists = current_user.lists.all
@@ -10,7 +10,7 @@ class ListsController < ApplicationController
     end
   end
 
-  # does not let a user create a blank category
+  # does not let a user create a blank list
   post '/lists' do
     if params[:name].empty?
       flash[:message] = "Please Enter a List Name"
@@ -52,10 +52,10 @@ class ListsController < ApplicationController
     if !params[:name].empty?
       @list = List.find(params[:id])
       @list.update(name:params[:name])
-      flash[:message] = "Your list has been updated successfully"
+      flash[:message] = "Your list has been updated successfully."
       redirect_to_lists
     else
-      flash[:message] = "Please don't leave blank content"
+      flash[:message] = "Please don't leave blank content."
       redirect to "/lists/#{params[:id]}/edit"
     end
   end
@@ -79,5 +79,21 @@ class ListsController < ApplicationController
       redirect_if_not_logged_in
     end
   end
-
+  
+  # helper route created to edit items
+  # file adds '/lists' to the edit link
+  get '/lists/items/:id/edit' do
+    if logged_in?
+      @item = Item.find(params[:id])
+      @list = List.find(@item.list_id)
+      if @item.user_id == session[:user_id]
+        erb :'items/edit_item'
+      else
+        redirect_to_home_page
+      end
+    else
+      redirect_if_not_logged_in
+    end
+  end
+  
 end 
