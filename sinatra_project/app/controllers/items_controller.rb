@@ -9,3 +9,12 @@ class ItemsController < ApplicationController
       redirect_if_not_logged_in
     end
   end
+  
+  # lets user create a item if they are logged in
+  get '/items/new' do
+    if logged_in?
+      erb :'/items/create_item'
+    else
+      redirect_if_not_logged_in
+    end
+  end
