@@ -1,0 +1,9 @@
+<h1>Username</h1
+<p ><%= current_user.username %></p>
+
+<a href="/items"> View Items</a>
+      
+<form action="/users/<%= current_user.id %>/delete" method="post">
+    <input type="hidden" id="hidden" name="_method" value="DELETE">
+  <button type="submit" class="btn btn-danger">Delete Acount</button>
+</form>
