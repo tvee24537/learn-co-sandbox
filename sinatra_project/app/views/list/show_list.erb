@@ -1,0 +1,8 @@
+<h1><%= @list.name %> items are <%= @list.items.collect {|e| e.amount}.sum %></h1>
+<table class="table table-hover table-striped" >
+      <tr class="info">
+        <th><h3>Description</h3></th>
+        <th><h3>Amount</h3></th>
+        <th><h3></h3></th>
+      </tr>
+</table>
