@@ -15,11 +15,26 @@
   </head>
   <body>
     <div class="wrapper">
+      <ul class="nav navbar-nav navbar-right">
 
-        <%= yield %>
+        <li><a href="/categories"><span class="glyphicon glyphicon-tasks"></span> Categories </a></li>
+        <li><a href="/"><span class="glyphicon glyphicon-th-list"></span> View Expenses </a></li>
+        <li><a href="/expenses/new"><span class="glyphicon glyphicon-edit"></span> Add New Expense</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Account <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/users/<%= current_user.id %>/edit"><span class="glyphicon glyphicon-cog"></span> Edit User Info</a></li>
+
+            <li role="separator" class="divider"></li>
+            <li><a href="/logout"><span class="glyphicon glyphicon-off"></span> Log out</a></li>
+          </ul>
+        </li>
+      </ul>
+
+    <%= yield %>
 
       <footer class="branding">
-        <small>&copy; 2020 <strong>SinatraProject</strong></small>
+        <small>&copy; 2020 <strong>Simple Tracker</strong></small>
       </footer>
     </div>
 
