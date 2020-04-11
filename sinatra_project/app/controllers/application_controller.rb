@@ -12,46 +12,41 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "password_security"
   end
 
-  get "/" do
-    erb :welcome
-  end
-
-  get '/registrations/signup' do
-
-    erb :'/registrations/signup'
-  end
-
-  post '/registrations' do
-    @user = User.new(name: params["name"], email: params["email"], password: params["password"])
-    @user.save
-    session[:user_id] = @user.id
-
-    redirect '/users/home'
-  end
-
-  get '/sessions/login' do
-
-    # the line of code below render the view page in app/views/sessions/login.erb
-    erb :'sessions/login'
-  end
-
-  post '/sessions' do
-    @user = User.find_by(email: params[:email], password: params[:password])
-    if @user
-      session[:user_id] = @user.id
-      redirect '/users/home'
+# Redirect to home page
+  get '/' do
+    if !logged_in?
+      erb :index, :layout => :'not_logged_in_layout' #=> Log In Page
+    else
+      redirect_to_home_page
     end
-    redirect '/sessions/login'
   end
 
-  get '/sessions/logout' do
-    session.clear
-    redirect '/'
+
+# methods of redirection
+  helpers do
+
+    def logged_in?
+      !!session[:user_id]
+    end
+
+    def current_user
+      User.find(session[:user_id])
+    end
+
+    def redirect_if_not_logged_in
+      if !logged_in?
+        redirect "/login"
+      end
+    end
+
+    def redirect_to_home_page
+      redirect to "/items"
+    end
+
+    def redirect_to_categories
+      redirect to "/lists"
+    end
+
   end
 
-  get '/users/home' do
-
-    @user = User.find(session[:user_id])
-    erb :'/users/home'
-  end
 end
