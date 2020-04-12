@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   
-  # lets a user view all items if logged in
+  # lets user view all items if logged in
   # redirects to login page if not logged in
   get '/items' do
     if logged_in?
@@ -19,7 +19,7 @@ class ItemsController < ApplicationController
     end
   end
   
-  # does not let a user create a blank item
+  # does not let user create a blank item
   post '/items' do
     if params[:description].empty? || params[:amount].empty? || params[:list_name].empty?
       flash[:message] = "Please don't leave blank content."
@@ -43,8 +43,8 @@ class ItemsController < ApplicationController
     end
   end
   
-# lets a user view item edit form if they are logged in
-  # does not let a user edit a item user did not create
+# lets user view item edit form if they are logged in
+  # does not let user edit an item user did not create
   get '/items/:id/edit' do
     if logged_in?
       @item = Item.find(params[:id])
@@ -59,7 +59,7 @@ class ItemsController < ApplicationController
     end
   end
   
-  # does not let a user edit an item with blank content
+  # does not let user edit an item with blank content
   patch '/items/:id' do
     if !params[:description].empty? && !params[:amount].empty?
       @item = Item.find(params[:id])
@@ -75,8 +75,8 @@ class ItemsController < ApplicationController
     end
   end
   
-# lets a user delete their own item if they are logged in
-  # does not let a user delete a item they did not create
+# lets user delete their own item if they are logged in
+  # does not let user delete an item they did not create
   delete '/items/:id/delete' do
     if logged_in?
       @item = Item.find(params[:id])
