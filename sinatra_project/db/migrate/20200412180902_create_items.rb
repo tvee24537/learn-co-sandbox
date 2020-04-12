@@ -3,6 +3,7 @@ class CreateItems < ActiveRecord::Migration
     create_table :items do |t|
       t.string  :description
       t.float   :amount
+      t.string  :date
       t.integer :list_id
       t.integer :user_id
     end
