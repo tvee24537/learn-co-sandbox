@@ -1,14 +1,19 @@
+<h3>Edit your information</h3>
+<% if flash.has?(:message) %>
+  <p><%= flash[:message] %> </p>
+<% end %>
+
 <form role="form" action="/users/<%= current_user.id%>" method="post" class="signup-form">
   <input id="hidden" type="hidden" name="_method" value="PATCH">
 
   <div class="form-group">
     <label class="sr-only" for="form-username">Username</label>
-    <input type="text" name="username" placeholder="Username..." class="form-username form-control" id="form-username" value="<%= current_user.username%>">
+    <input type="text" name="username" placeholder="Username" class="form-username form-control" id="form-username" value="<%= current_user.username%>">
   </div>
 
   <div class="form-group">
     <label class="sr-only" for="password">Password</label>
-    <input type="password" name="password" placeholder="Password..." class="form-password form-control" id="form-password" value="<%= current_user.password%>">
+    <input type="password" name="password" placeholder="Password" class="form-password form-control" id="form-password" value="<%= current_user.password%>">
   </div>
     <button type="submit" class="btn">Update</button>
 </form>
