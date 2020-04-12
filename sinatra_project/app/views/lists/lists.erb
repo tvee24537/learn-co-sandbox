@@ -16,7 +16,6 @@
       <tr style="text-align:left;">
         <td><a href="lists/<%= list.id %>"><%= list.name %></a></td>
         <td><a href="lists/<%= list.id %>"><%= list.items.size %></a></td>
-        <td><%= list.total_amount %></td>
         <td><a href="lists/<%= list.id %>/edit">Edit </a></td>
         <td><form action="/lists/<%= list.id %>/delete" method="post">
             <input type="hidden" id="hidden" name="_method" value="DELETE">
