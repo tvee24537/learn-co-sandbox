@@ -10,7 +10,7 @@ class ListsController < ApplicationController
     end
   end
 
-  # does not let a user create a blank list
+  # does not let user create a blank list
   post '/lists' do
     if params[:name].empty?
       flash[:message] = "Please Enter a List Name"
@@ -33,7 +33,7 @@ class ListsController < ApplicationController
   end
 
 # lets a user view list edit form if they are logged in
-  # does not let a user edit a list not created by it self
+  # does not let user edit a list not created by the user
   get '/lists/:id/edit' do
     if logged_in?
       @list = List.find(params[:id])
@@ -47,7 +47,7 @@ class ListsController < ApplicationController
     end
   end
 
-  # does not let a user edit a list with blank content
+  # does not let user edit a list with blank content
   patch '/lists/:id' do
     if !params[:name].empty?
       @list = List.find(params[:id])
@@ -60,13 +60,13 @@ class ListsController < ApplicationController
     end
   end
 
-# lets a user delete their own list if they are logged in
-  # does not let a user delete a list that user did not create
+# lets user delete their own list if they are logged in
+  # does not let user delete a list that user did not create
   delete '/lists/:id/delete' do
     if logged_in?
       if current_user.lists.size == 1
         flash[:message] = "You need at least one list to delete."
-        redirect_to_categories
+        redirect_to_lists
       else
         @list = List.find(params[:id])
         if @list.user_id == current_user.id
