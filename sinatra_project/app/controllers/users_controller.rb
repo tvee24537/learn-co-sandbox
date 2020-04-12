@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # does not let a user sign up without a username, email, password
+  # does not let user sign up without a username and password
   # creates a general list on initialization
   post '/signup' do
     if params[:username].empty? || params[:password].empty?
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
       @user = User.create(username:params[:username], password:params[:password])
       @list = List.create(name:"General", user_id:@user.id)
       session[:user_id] = @user.id
-      flash[:message] = "It's time to add items"
+      flash[:message] = "Lets add some items."
       redirect_to_home_page
     end
   end
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     end
   end
   
-  # lets an user edit info only if logged in
+  # lets user edit info only if logged in
   get '/users/:id/edit' do
     if logged_in?
         erb :'users/edit_user'
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # does not let a user edit with blank content
+  # does not let user edit with blank content
   patch '/users/:id' do
     if !params[:username].empty?&& !params[:password].empty?
       @user = User.find(params[:id])
@@ -79,7 +79,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # lets a user delete its own account if they are logged in
+  # lets user delete user's account if they are logged in
   delete '/users/:id/delete' do
     if logged_in?
       current_user.delete
@@ -89,7 +89,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # lets a user logout if they are already logged in
+  # lets user logout if they are already logged in
   # does not let a user logout if not logged in
   get '/logout' do
     if logged_in?
