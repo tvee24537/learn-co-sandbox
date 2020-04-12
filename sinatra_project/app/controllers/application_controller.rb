@@ -43,7 +43,7 @@ class ApplicationController < Sinatra::Base
       redirect to "/items"
     end
 
-    def redirect_to_categories
+    def redirect_to_lists
       redirect to "/lists"
     end
 
