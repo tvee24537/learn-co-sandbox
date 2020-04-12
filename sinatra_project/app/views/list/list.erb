@@ -1,5 +1,9 @@
 <h1>Item Lists</h1>
 
+<% if flash.has?(:message) %>
+  <p><%= flash[:message] %> </p>
+<% end %>
+
 <table class="table table-hover table-striped" >
   <tr class="info">
     <th><h3>Name</h3></th>
