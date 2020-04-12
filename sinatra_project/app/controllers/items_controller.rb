@@ -21,14 +21,14 @@ class ItemsController < ApplicationController
   
   # does not let user create a blank item
   post '/items' do
-    if params[:description].empty? || params[:amount].empty? || params[:list_name].empty?
+    if params[:description].empty? || params[:amount].empty? || params[:date].empty? || params[:list_name].empty?
       flash[:message] = "Please don't leave blank content."
       redirect to "/items/new"
     else
       @user = current_user
       @list = @user.lists.find_or_create_by(name:params[:list_name])
       @list.user_id = @user.id
-      @item = Item.create(description:params[:description], amount:params[:amount], list_id:@list.id, user_id:@user.id)
+      @item = Item.create(description:params[:description], amount:params[:amount], date:params[:date], list_id:@list.id, user_id:@user.id)
       redirect to "/items/#{@item.id}"
     end
   end
@@ -61,9 +61,9 @@ class ItemsController < ApplicationController
   
   # does not let user edit an item with blank content
   patch '/items/:id' do
-    if !params[:description].empty? && !params[:amount].empty?
+    if !params[:description].empty? && !params[:amount].empty? && !params[:date].empty?
       @item = Item.find(params[:id])
-      @item.update(description:params[:description], amount:params[:amount])
+      @item.update(description:params[:description], amount:params[:amount], date:params[:date])
       @list = current_user.lists.find_by(name:params[:list_name])
       @item.list_id = @list.id
       @item.save
