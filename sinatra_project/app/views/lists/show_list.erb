@@ -11,7 +11,7 @@
     <% @list.items_sort_by_amount.each do |item| %>
       <tr style="text-align:left;">
         <td><%= item.description %></td>
-        <td>$ <%= item.amount %></td>
+        <td> <%= item.amount %></td>
         <td><a href="itmes/<%= item.id %>/edit">Edit</a></td>
       </tr>
     <% end %>
