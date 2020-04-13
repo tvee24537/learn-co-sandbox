@@ -1,4 +1,4 @@
-class Sorter
+class Quantifiable
 
   module InstanceMethods
 
