@@ -16,10 +16,9 @@
     <% current_user.items_sort_by_date.each do |item| %>
       <tr style="text-align:left;">
         <td><a href="items/<%= item.id %>"><%= item.description %></a></td>
-        <td>$ <%= item.amount %></td>
+        <td> <%= item.amount %></td>
         <td><%= item.date %></td>
         <td><a href="lists/<%= item.list.id %>"><%= item.list.name %></a></td>
-        <td><a href="items/<%= item.id %>/edit">Edit </a></td>
       </tr>
     <% end %>
 </table>
