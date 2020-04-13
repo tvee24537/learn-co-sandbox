@@ -6,12 +6,14 @@
   <tr class="info">
     <th><h3>Description</h3></th>
     <th><h3>Amount</h3></th>
+    <th><h3>Date</h3></th>
     <th><h3></h3></th>
   </tr>
-    <% @list.items_sort_by_amount.each do |item| %>
+    <% @list.items_sort_by_date.each do |item| %>
       <tr style="text-align:left;">
         <td><%= item.description %></td>
         <td> <%= item.amount %></td>
+        <td><%= item.date %></td>
         <td><a href="itmes/<%= item.id %>/edit">Edit</a></td>
       </tr>
     <% end %>
