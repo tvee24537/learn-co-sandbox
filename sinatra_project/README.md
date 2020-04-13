@@ -1,66 +1,28 @@
 # Simple Tracker
 
-This application is used to maintain a list of items for each user. The user can login to create a new list or to see the list of their saved lists. The user can select, go into the list, add/delete items from the list, and back out of the list. The user can logout of their account.
+This application exist to maintain a list of items for each user. The user can login to create a new list or to see a list of their saved lists. The user can select, go into the list, add/delete items from the list, and back out of the list. The user can logout of their account. The user can create items with name, amount, and date, then choice the list for the item to go into.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-### Prerequisites
-
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
+To start please head to Github.com and clone this gitfile.
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
+To install please follow these steps:
 
-Say what the step will be
+Clone using git@github.com:tvee24537/Project2.git for SSH or https://github.com/tvee24537/Project2.git for HTTPS
 
-```
-Give the example
-```
+Run "bundle install" in your console
 
-End with an example of getting some data out of the system or using it for a little demo
+Run "rake db:migrate"
 
-## Running the tests
+Run "shotgun"
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+Copy the server address and paste into a browser (I used the IDE so my address looks like this: 167.99.15.173:49344)
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* Thanapat Veerakajorn
 
 ## License
 
@@ -69,5 +31,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* Corneal gem as a foundation
+* Expensy as reference
