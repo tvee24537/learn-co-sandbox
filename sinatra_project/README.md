@@ -22,7 +22,11 @@ Copy the server address and paste into a browser (I used the IDE so my address l
 
 ## Authors
 
-* Thanapat Veerakajorn
+Thanapat Veerakajorn
+
+## Contributors
+
+See CONTRIBUTING.md for more details
 
 ## License
 
