@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
   include Quantifiable::InstanceMethods
   
   has_secure_password
+  validates :username, :uniqueness => {:case_sensitive => false} #This should validate if username exist already in the database
   validates_presence_of :username, :password
-  validates_uniqueness_of :username, case_sensitive: false #This should validate if username exist already in the database
 
   has_many :lists, :dependent => :destroy
   has_many :items

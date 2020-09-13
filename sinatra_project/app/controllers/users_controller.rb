@@ -17,8 +17,8 @@ class UsersController < ApplicationController
       flash[:message] = "Pleae don't leave blank content."
       redirect to '/signup'
     else
-      if @user.valid? == false
-        flash[:notice] = "<h3>Username already exist, try anoter one.</h3>"
+      if @user
+        flash[:notice] = "Username already exist, try anoter one."
         redirect to '/signup'
       else
         @user = User.create(username:params[:username], password:params[:password])
