@@ -17,11 +17,16 @@ class UsersController < ApplicationController
       flash[:message] = "Pleae don't leave blank content."
       redirect to '/signup'
     else
-      @user = User.create(username:params[:username], password:params[:password])
-      @list = List.create(name:"General", user_id:@user.id)
-      session[:user_id] = @user.id
-      flash[:message] = "Lets add some items."
-      redirect_to_home_page
+      if @user.valid? = false
+        flash[:notice] = "<h3>Username already exist, try anoter one.</h3>"
+        redirect to '/signup'
+      else
+        @user = User.create(username:params[:username], password:params[:password])
+        @list = List.create(name:"General", user_id:@user.id)
+        session[:user_id] = @user.id
+        flash[:message] = "Lets add some items."
+        redirect_to_home_page
+      end
     end
   end
 
