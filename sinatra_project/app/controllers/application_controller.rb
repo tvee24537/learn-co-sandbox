@@ -22,7 +22,7 @@ class ApplicationController < Sinatra::Base
   end
 
 
-# methods of redirection
+# methods collection
   helpers do
 
     def logged_in?
@@ -46,7 +46,7 @@ class ApplicationController < Sinatra::Base
     def redirect_to_lists
       redirect to "/lists"
     end
-
+    
   end
 
 end
