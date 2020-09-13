@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   include Quantifiable::InstanceMethods
   
   has_secure_password
+  validates_presence_of :username, :password
 
   has_many :lists, :dependent => :destroy
   has_many :items
