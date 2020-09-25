@@ -17,6 +17,7 @@ class UsersController < ApplicationController
       flash[:message] = "Pleae don't leave blank content."
       redirect to '/signup'
     else
+      # check for username uniqueness
       if @user
         flash[:notice] = "Username already exist, try anoter one."
         redirect to '/signup'
