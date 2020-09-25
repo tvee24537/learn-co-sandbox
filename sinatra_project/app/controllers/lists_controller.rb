@@ -17,8 +17,12 @@ class ListsController < ApplicationController
       redirect_to_lists
     else
       @user = current_user
-      @list = List.create(name:params[:name], user_id:@user.id)
-      redirect_to_lists
+      @list = List.new(name:params[:name], user_id:@user.id)
+      if @list.save
+        erb :'lists/lists'
+      else 
+        redirect_to_lists
+      end
     end
   end
 
